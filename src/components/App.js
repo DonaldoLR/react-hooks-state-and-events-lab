@@ -4,17 +4,20 @@ import itemData from "../data/items";
 
 function App() {
   const [items, setItems] = useState(itemData);
-
+  const [ themeToggle, setthemeToggle] = useState(false)
   // this data will be passed down to the ShoppingList as a prop
   console.log(items);
+  function handleThemeToggle(){
+    setthemeToggle(() => !themeToggle)
+  }
 
   return (
     <div className={"App " + (false ? "dark" : "light")}>
       <header>
         <h2>Shopster</h2>
-        <button>Dark Mode</button>
+        <button onClick={handleThemeToggle} className={themeToggle ? 'App dark' : 'App light'}>Dark Mode</button>
       </header>
-      <ShoppingList items={items} />
+      <ShoppingList items={items}/>
     </div>
   );
 }
